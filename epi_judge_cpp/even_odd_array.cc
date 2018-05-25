@@ -7,6 +7,15 @@ using std::vector;
 
 void EvenOdd(vector<int>* A_ptr) {
   // TODO - you fill in here.
+  int even_edge = 0, odd_edge = A_ptr->size() - 1;
+
+  while(even_edge < odd_edge){
+    if(A_ptr->at(even_edge) % 2 == 0) even_edge++;
+    else if(A_ptr->at(odd_edge) % 2 == 1) odd_edge--;
+    else{
+      swap(A_ptr[even_edge], A_ptr[odd_edge]);
+    }
+  }
   return;
 }
 void EvenOddWrapper(TimedExecutor& executor, vector<int> A) {
