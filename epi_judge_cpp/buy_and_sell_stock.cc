@@ -3,7 +3,22 @@
 using std::vector;
 double BuyAndSellStockOnce(const vector<double>& prices) {
   // TODO - you fill in here.
-  return 0.0;
+  if(prices.empty()) return 0.0;
+
+  double profit = 0.0;
+  double min = prices[0];
+
+  for(auto& p : prices){
+    if(min > p){
+      min = p;
+    }
+    else{
+      profit = profit > p - min ? profit : p - min;
+    }
+
+  }
+
+  return profit;
 }
 
 int main(int argc, char* argv[]) {

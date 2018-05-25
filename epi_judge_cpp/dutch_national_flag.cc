@@ -15,21 +15,30 @@ void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
   int after = A.size() - 1;
   Color pivot = A[pivot_index];
 
-  while(A[before] < pivot) before++;
-  while(A[after] > pivot) after--;
-
   int i = before;
 
-  while(i < after){
-    if(A[i] < pivot){
-        std::swap(A[i], A[before++]);
+  while(i <= after){
+    if(A[before] > pivot && A[after] < pivot){
+      std::swap(A[before], A[after]);
+      before++; after--;
+
+    }
+    else if(A[i] < pivot){
+        std::swap(A[i], A[before]);
+        while(A[before] < pivot) before++;
     }
     else if(A[i] > pivot){
-      std::swap(A[i], A[after--]);
+      std::swap(A[i], A[after]);
+      while(A[after] > pivot) after--;
     }
     else{
       i++;
     }
+
+    if(i < before){
+      i = before;
+    }
+
   }
 
 
