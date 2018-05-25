@@ -13,10 +13,8 @@ short Parity(unsigned long long x) {
       max = max >> shift;
   }
 
-  if(shift > 0) return 0;
-  else{
-      return (short) x;
-  }
+    return (short) x;
+}
 
 
   /*
@@ -45,7 +43,7 @@ short Parity(unsigned long long x) {
   else return (short) 0;
 
    */
-}
+
 
 int main(int argc, char* argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
