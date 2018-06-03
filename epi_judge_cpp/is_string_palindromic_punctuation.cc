@@ -3,7 +3,18 @@
 using std::string;
 
 bool IsPalindrome(const string& s) {
-  // TODO - you fill in here.
+  int begin = 0;
+  int end = s.size() - 1;
+
+  while(begin < end){
+    while(ispunct(s[begin]) || s[begin] == ' ' && begin < end) begin++;
+    while(ispunct(s[end]) || s[end] == ' ' && begin < end) end--;
+    if(begin >= end) return true;
+    if(tolower(s[begin]) != tolower(s[end])) return false;
+    begin++;
+    end--;
+  }
+
   return true;
 }
 
