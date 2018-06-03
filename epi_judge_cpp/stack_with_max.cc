@@ -4,23 +4,39 @@
 #include "test_framework/test_failure.h"
 using std::length_error;
 
+#include <limits.h>
+#include <vector>
+
 class Stack {
  public:
+    std::vector<int> the_stack;
+    int max = INT_MIN;
+
   bool Empty() const {
     // TODO - you fill in here.
-    return true;
+    return the_stack.empty();
   }
   int Max() const {
-    // TODO - you fill in here.
-    return 0;
+    return max;
   }
   int Pop() {
     // TODO - you fill in here.
-    return 0;
+    int ret = the_stack.back();
+    if(the_stack.back() == max) {
+      max = INT_MIN;
+      for (int i = 0; i < the_stack.size() - 1; i++){
+        if(the_stack[i] > max) max = the_stack[i];
+      }
+
+    }
+    the_stack.pop_back();
+
+    return ret;
   }
   void Push(int x) {
     // TODO - you fill in here.
-    return;
+    the_stack.push_back(x);
+    if(max < x) max = x;
   }
 };
 struct StackOp {
