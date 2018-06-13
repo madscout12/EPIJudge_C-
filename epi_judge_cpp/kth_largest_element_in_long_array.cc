@@ -1,12 +1,34 @@
 #include <vector>
 #include "test_framework/generic_test.h"
 using std::vector;
+using std::priority_queue;
+
+struct comp{
+    bool operator()(const int& a, const int& b) const{
+      return a > b;
+    }
+};
 
 int FindKthLargestUnknownLength(vector<int>::const_iterator stream_begin,
                                 const vector<int>::const_iterator& stream_end,
                                 int k) {
   // TODO - you fill in here.
-  return 0;
+  priority_queue<int, vector<int>, struct comp> q;
+
+  while(stream_begin != stream_end){
+    if(q.size() < k){
+      q.push(*stream_begin);
+
+    }
+    else if(q.size() == k && *stream_begin > q.top()){
+      q.pop();
+      q.push(*stream_begin);
+    }
+
+    stream_begin++;
+  }
+
+  return q.top();
 }
 int FindKthLargestUnknownLengthWrapper(const vector<int>& stream, int k) {
   return FindKthLargestUnknownLength(stream.cbegin(), stream.cend(), k);
