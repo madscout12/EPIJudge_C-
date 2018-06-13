@@ -5,10 +5,19 @@
 using std::unique_ptr;
 using std::vector;
 
+void build(const unique_ptr<BinaryTreeNode<int>>& node, vector<int>& ret){
+  if(node == nullptr) return;
+  build(node->left, ret);
+  build(node->right, ret);
+  ret.push_back(node->data);
+}
+
 // We use stack and previous node pointer to simulate postorder traversal.
 vector<int> PostorderTraversal(const unique_ptr<BinaryTreeNode<int>>& tree) {
   // TODO - you fill in here.
-  return {};
+  vector<int> ret;
+  build(tree, ret);
+  return ret;
 }
 
 int main(int argc, char* argv[]) {
